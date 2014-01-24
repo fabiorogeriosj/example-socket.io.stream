@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Example socket.io.stream</title>
+	<script type="text/javascript" src="js/socket.io.js"></script>
+	<script type="text/javascript" src="js/socket.io-stream.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+	<script type="text/javascript">
+
+	$(document).ready(function (){
+
+		var socket = io.connect(location.href);    
+
+		$('#file').change(function(e) {
+            var file = e.target.files[0];
+            var stream = ss.createStream();
+            // upload a file to the server.
+            ss(socket).emit('send-file', stream, file);
+            ss.createBlobReadStream(file).pipe(stream);
+            $('#file').val('');
+            $('#file').after('<p>File uploaded!</p>');
+        });
+
+	});
+
+	</script>
+</head>
+<body>
+	<p>This is just an example using socket.io.stream to send files to the server!</p>
+	<input type="file" id="file">
+</body>
+</html>
