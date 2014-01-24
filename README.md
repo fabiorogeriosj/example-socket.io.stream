@@ -1,4 +1,4 @@
-example-socket.io.stream
+example-socket.io-stream
 ========================
 
 This is just an example using socket.io.stream to send files to the server!
